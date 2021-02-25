@@ -1,0 +1,31 @@
+# This one is sourced from https://hub.docker.com/r/bitnami/cassandra/ with modifications to the host port mapping.
+
+version: '2'
+services:
+  cassandra-node1:
+    image: bitnami/cassandra:latest
+    ports:
+      - '12006:7000'
+      - '12007:9042'
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2,cassandra-node3
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=timetrap
+      - CASSANDRA_TRANSPORT_PORT_NUMBER=7000
+
+  cassandra-node2:
+    image: bitnami/cassandra:latest
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2,cassandra-node3
+      - CASSANDRA_PASSWORD=timetrap
+      - CASSANDRA_TRANSPORT_PORT_NUMBER=7000
+      
+  cassandra-node3:
+    image: bitnami/cassandra:latest
+    environment:
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_SEEDS=cassandra-node1,cassandra-node2,cassandra-node3
+      - CASSANDRA_PASSWORD=timetrap
+      - CASSANDRA_TRANSPORT_PORT_NUMBER=7000
