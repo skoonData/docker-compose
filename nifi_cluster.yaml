@@ -15,7 +15,7 @@ services:
 
   nifi01:
     container_name: nifi01
-    image: apache/nifi:latest
+    image: apache/nifi:1.13.2
     ports:
       - 12010:8800
       - 12021:9092
